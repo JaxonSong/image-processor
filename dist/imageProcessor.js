@@ -78,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
   var blendingFunc = __webpack_require__(4);
   var loadImage = __webpack_require__(5);
 
-  function blending ({originalImageSrc, textureImageSrc, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1}) {
+  function blending ({srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1}) {
     return new Promise(async (resolve, reject) => {
       const correctmimeTypeList = ['jpeg', 'png', 'webp']
       if (!correctmimeTypeList.includes(mimeType)) {
@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
       canvasOutput = canvasOutput instanceof HTMLElement && canvasOutput.tagName === 'CANVAS' ? canvasOutput : document.createElement('canvas')
       let ctxOutPut = canvasOutput.getContext('2d')
 
-      let originalImage = await loadImage(originalImageSrc)
+      let originalImage = await loadImage(srcOriginalImage)
       let width = originalImage.width
       let height = originalImage.height
 
@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
       canvasOriginal.height = height
       ctxOriginal.drawImage(originalImage, 0, 0)
   
-      let blendImage = await loadImage(textureImageSrc, width, height)
+      let blendImage = await loadImage(srcTextureImage, width, height)
       canvasBlend.width = width
       canvasBlend.height = height
       ctxBlend.drawImage(blendImage, 0, 0, width, height)
@@ -540,7 +540,7 @@ return /******/ (function(modules) { // webpackBootstrap
     
   var loadImage = __webpack_require__(5);
 
-  function lut ({originalImageSrc, lutImageSrc, canvasOutput, mimeType = 'jpeg', quality = 1}) {
+  function lut ({srcOriginalImage, lutImageSrc, canvasOutput, mimeType = 'jpeg', quality = 1}) {
     return new Promise(async (resolve, reject) => {
       const correctmimeTypeList = ['jpeg', 'png', 'webp']
       if (!correctmimeTypeList.includes(mimeType)) {
@@ -555,7 +555,7 @@ return /******/ (function(modules) { // webpackBootstrap
       canvasOutput = canvasOutput instanceof HTMLElement && canvasOutput.tagName === 'CANVAS' ? canvasOutput : document.createElement('canvas')
       let ctxOutPut = canvasOutput.getContext('2d')
 
-      let originalImage = await loadImage(originalImageSrc)
+      let originalImage = await loadImage(srcOriginalImage)
       let width = originalImage.width
       let height = originalImage.height
 
