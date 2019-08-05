@@ -63,13 +63,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
   "use strict";
     
-  var blending = __webpack_require__(2);
-  var lut = __webpack_require__(7);
-
-  module.exports = {
-    blending,
-    lut
-  };
+  module.exports.blending = __webpack_require__(2);
+  module.exports.lut = __webpack_require__(7);
 
 
 /***/ }),
@@ -158,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
   "use strict";
     
-  function rgb2hsb ([r, g, b]) {
+  module.exports.rgb2hsb = function rgb2hsb ([r, g, b]) {
     r /= 255
     b /= 255
     r /= 255
@@ -189,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
     return [hsbH, hsbS, hsbB].map(item => Math.round(item))
   }
   
-  function hsb2Rgb ([hsbH, hsbS, hsbB]) {
+  module.exports.hsb2Rgb = function hsb2Rgb ([hsbH, hsbS, hsbB]) {
     let rgbArr = []
     let i = Math.abs(hsbH / 60) % 6
     let f = hsbH / 60 - i
@@ -219,10 +214,6 @@ return /******/ (function(modules) { // webpackBootstrap
     return rgbArr.map(item => Math.round(item))
   }
   
-  module.exports =  {
-    rgb2hsb,
-    hsb2Rgb
-  }
 
 /***/ }),
 
@@ -232,7 +223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
   "use strict";
     
-  module.exports =  {
+  module.exports = {
     /**
      * 正常
      */
@@ -504,7 +495,7 @@ return /******/ (function(modules) { // webpackBootstrap
     })
   }
 
-  module.exports =  loadImage
+  module.exports = loadImage
 
 
 /***/ }),
@@ -533,7 +524,7 @@ return /******/ (function(modules) { // webpackBootstrap
     }
   }
 
-  module.exports =  isLocalImage
+  module.exports = isLocalImage
 
 
 /***/ }),
