@@ -222,6 +222,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
   "use strict";
+
+  var rgb2hsb = __webpack_require__(3).rgb2hsb;
+  var hsb2Rgb = __webpack_require__(3).hsb2Rgb;
     
   module.exports = {
     /**
@@ -324,40 +327,40 @@ return /******/ (function(modules) { // webpackBootstrap
      * 色相
      */
     hue: (originRGBArr, textureRGBArr) => {
-      let hsbOriginal = utils.rgb2hsb(originRGBArr)
-      let hsbTexture = utils.rgb2hsb(textureRGBArr)
+      let hsbOriginal = rgb2hsb(originRGBArr)
+      let hsbTexture = rgb2hsb(textureRGBArr)
       let hsbBlending = ([hsbTexture[0], hsbOriginal[1], hsbOriginal[2]])
-      let rgbBlending = utils.hsb2Rgb(hsbBlending)
+      let rgbBlending = hsb2Rgb(hsbBlending)
       return rgbBlending
     },
     /**
      * 饱和度
      */
     saturation: (originRGBArr, textureRGBArr) => {
-      let hsbOriginal = utils.rgb2hsb(originRGBArr)
-      let hsbTexture = utils.rgb2hsb(textureRGBArr)
+      let hsbOriginal = rgb2hsb(originRGBArr)
+      let hsbTexture = rgb2hsb(textureRGBArr)
       let hsbBlending = ([hsbOriginal[0], hsbTexture[1], hsbOriginal[2]])
-      let rgbBlending = utils.hsb2Rgb(hsbBlending)
+      let rgbBlending = hsb2Rgb(hsbBlending)
       return rgbBlending
     },
     /**
      * 颜色
      */
     color: (originRGBArr, textureRGBArr) => {
-      let hsbOriginal = utils.rgb2hsb(originRGBArr)
-      let hsbTexture = utils.rgb2hsb(textureRGBArr)
+      let hsbOriginal = rgb2hsb(originRGBArr)
+      let hsbTexture = rgb2hsb(textureRGBArr)
       let hsbBlending = ([hsbTexture[0], hsbTexture[1], hsbOriginal[2]])
-      let rgbBlending = utils.hsb2Rgb(hsbBlending)
+      let rgbBlending = hsb2Rgb(hsbBlending)
       return rgbBlending
     },
     /**
      * 明度
      */
     luminosity: (originRGBArr, textureRGBArr) => {
-      let hsbOriginal = utils.rgb2hsb(originRGBArr)
-      let hsbTexture = utils.rgb2hsb(textureRGBArr)
+      let hsbOriginal = rgb2hsb(originRGBArr)
+      let hsbTexture = rgb2hsb(textureRGBArr)
       let hsbBlending = ([hsbOriginal[0], hsbOriginal[1], hsbTexture[2]])
-      let rgbBlending = utils.hsb2Rgb(hsbBlending)
+      let rgbBlending = hsb2Rgb(hsbBlending)
       return rgbBlending
     },
     /**
