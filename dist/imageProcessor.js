@@ -540,7 +540,7 @@ return /******/ (function(modules) { // webpackBootstrap
     
   var loadImage = __webpack_require__(5);
 
-  function lut ({srcOriginalImage, lutImageSrc, canvasOutput, mimeType = 'jpeg', quality = 1}) {
+  function lut ({srcOriginalImage, srcLutImage, canvasOutput, mimeType = 'jpeg', quality = 1}) {
     return new Promise(async (resolve, reject) => {
       const correctmimeTypeList = ['jpeg', 'png', 'webp']
       if (!correctmimeTypeList.includes(mimeType)) {
@@ -563,7 +563,7 @@ return /******/ (function(modules) { // webpackBootstrap
       canvasOriginal.height = height
       ctxOriginal.drawImage(originalImage, 0, 0)
   
-      let lutImage = await loadImage(lutImageSrc)
+      let lutImage = await loadImage(srcLutImage)
       canvasLut.width = lutImage.width
       canvasLut.height = lutImage.height
       ctxLut.drawImage(lutImage, 0, 0)
