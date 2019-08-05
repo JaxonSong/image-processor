@@ -1,5 +1,5 @@
 {
-  "name": "image-processor",
+  "name": "@jaxon_song/image-processor",
   "version": "1.0.0",
   "description": "A powerful JavaScript image processing tool",
   "main": "index.js",
