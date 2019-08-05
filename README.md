@@ -1,0 +1,1 @@
+A powerful JavaScript image processing tool

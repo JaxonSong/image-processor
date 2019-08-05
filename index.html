@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Test</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-color: rgba(0, 0, 0, 0.7)
+  }
+  .item {
+    display: inline-block;
+    width: 24%;
+    margin-left: 0.5%;
+  }
+  img, canvas {
+    display: block;
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+  <section class="wrap">
+    <ul class="image-wrap">
+      <li class="item">
+        <img src="https://i.pinimg.com/564x/e1/f9/a0/e1f9a0b9fb5ba1ae2749f0c4f7cd99fa.jpg" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="https://i.pinimg.com/564x/bb/23/e8/bb23e8776a9d981ccd7ed63b4dd2116c.jpg" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="https://i.pinimg.com/564x/d2/d8/c0/d2d8c00bf4665db0cc362aa9e6eec5dd.jpg" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="https://i.pinimg.com/564x/84/4c/4f/844c4fb5214dd7102b5b7b0129283945.jpg" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="./images/1.png" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="./images/2.png" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="./images/3.png" alt="">
+        <canvas></canvas>
+      </li>
+      <li class="item">
+        <img src="./images/4.png" alt="">
+        <canvas></canvas>
+      </li>
+    </ul>
+  </section>
+
+  <script src="./dist/imageProcessor.js"></script>
+  <script>
+    let oImages = document.querySelectorAll('img')
+    let oCanvas = document.querySelectorAll('canvas')
+    let textureImage = 'http://beautyai-data.cmeverapi.com/m8dmSrIhb2/test/blend/ageing/BLEND-ageing-A10-1.0/A10.jpg'
+    let lutImage = 'http://beautyai-data.cmeverapi.com/m8dmSrIhb2/test/lut/Screen/LUT-Screen-Orange-1.0/Orange.png'
+
+    oImages.forEach(async (image, index) => {
+      if (index < 4) {
+        imageProcessor.lut({
+          originalImageSrc: image.src,
+          lutImageSrc: lutImage,
+          canvasOutput: oCanvas[index]
+        }).then( data => {
+          console.log(data)
+        }).catch(error => {
+          console.log(error)
+        })
+      } else {
+        imageProcessor.blending({
+          originalImageSrc: image.src,
+          textureImageSrc: textureImage,
+          canvasOutput: oCanvas[index],
+          mimeType: 'png'
+        }).then( data => {
+          console.log(data)
+        }).catch(error => {
+          console.log(error)
+        })
+      }
+    })
+  </script>
+</body>
+</html>
