@@ -1,7 +1,7 @@
 const blendingFunc = require('./blendingFunc.js')
 var loadImage = require('./util.js').loadImage
 
-function blending ({srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1}) {
+function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1 }) {
   return new Promise(async (resolve, reject) => {
     const correctmimeTypeList = ['jpeg', 'png', 'webp']
     if (!correctmimeTypeList.includes(mimeType)) {
@@ -60,7 +60,7 @@ function blending ({srcOriginalImage, srcTextureImage, canvasOutput, blendingMod
 
     canvasOutput.toBlob(blob => {
       let url = window.URL.createObjectURL(blob)
-      resolve({blob, url})
+      resolve({ blob, url })
     }, 'image/' + mimeType, quality)
   })
 }

@@ -8,5 +8,8 @@
     "parser": "babel-eslint"
   },
   "extends": "standard",
-  "rules": {}
+  "rules": {
+    "prefer-const": "off",
+    "no-async-promise-executor": "off"
+  }
 }

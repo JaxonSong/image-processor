@@ -1,6 +1,6 @@
 var loadImage = require('./util.js').loadImage
 
-function lut ({srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', quality = 1}) {
+function lut ({ srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', quality = 1 }) {
   return new Promise(async (resolve, reject) => {
     const correctmimeTypeList = ['jpeg', 'png', 'webp']
     if (!correctmimeTypeList.includes(mimeType)) {
@@ -103,7 +103,7 @@ function lut ({srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', q
 
     outputCanvas.toBlob(blob => {
       let url = window.URL.createObjectURL(blob)
-      resolve({blob, url})
+      resolve({ blob, url })
     }, 'image/' + mimeType, quality)
   })
 }
