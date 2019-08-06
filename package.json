@@ -8,7 +8,10 @@
   },
   "scripts": {
     "lint": "eslint --fix --ext .js src",
-    "build": "babel src -d lib"
+    "clean": "rm -rf ./lib/* && rm -rf ./dist/* && rm -rf ./temp/*",
+    "babel": "babel src -d temp",
+    "uglify": "uglifyjs ./temp/blending.js -o ./lib/blending.js -c -m && uglifyjs ./temp/blendingFunc.js -o ./lib/blendingFunc.js -c -m && uglifyjs ./temp/lut.js -o ./lib/lut.js -c -m && uglifyjs ./temp/util.js -o ./lib/util.js -c -m",
+    "build": "npm run clean && npm run babel && npm run uglify"
   },
   "repository": {
     "type": "git",
@@ -26,14 +29,19 @@
   "author": "Jaxon",
   "license": "MIT",
   "devDependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.5.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "browserify": "^16.3.0",
     "eslint": "^6.1.0",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "uglify-js": "^3.6.0"
   }
 }
