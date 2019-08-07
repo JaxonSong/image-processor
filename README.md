@@ -3,15 +3,12 @@
 **A powerful JavaScript image processing tool, Including picture blending and LUT filter overlay.😎**
 
 ## Features
-***
 - Url that supports incoming local or online pictures
 - Support for 27 image blend modes in PhotoShop
 - Support LUT filter overlay
 - Support for outputting blob and url of processed images
 
 ## Installing
-***
-
 ### Using npm:
 ```shell
   $ npm install @jaxon_song/image-processor
@@ -22,7 +19,6 @@
 ```
 
 ## Usage
-***
 ### blending method:
 ```javascript
   const { blending } = require('@jaxon_song/image-processor')
@@ -70,7 +66,6 @@
   })
 ```
 ## API
-***
 ### blending
 ```javascript
   const { blending } = require('@jaxon_song/image-processor')
@@ -108,7 +103,6 @@
   })
 ```
 ## Blending Mode
-***
 | Name      |    Mode |
 | :-------- | --------:|
 | normal  | normal |
@@ -140,5 +134,4 @@
 | divide      |    divide |
 
 ## License
-***
 MIT
