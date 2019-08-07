@@ -1,6 +1,6 @@
 var loadImage = require('./util.js').loadImage
 
-function lut ({ srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', quality = 1 }) {
+function lut ({ srcOriginalImage, srcLutImage, canvasOutput, mimeType = 'jpeg', quality = 1 }) {
   return new Promise(async (resolve, reject) => {
     const correctmimeTypeList = ['jpeg', 'png', 'webp']
     if (!correctmimeTypeList.includes(mimeType)) {
@@ -12,8 +12,8 @@ function lut ({ srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', 
     let ctxOriginal = canvasOriginal.getContext('2d')
     let canvasLut = document.createElement('canvas')
     let ctxLut = canvasLut.getContext('2d')
-    outputCanvas = outputCanvas instanceof HTMLElement && outputCanvas.tagName === 'CANVAS' ? outputCanvas : document.createElement('canvas')
-    let ctxOutPut = outputCanvas.getContext('2d')
+    canvasOutput = canvasOutput instanceof HTMLElement && canvasOutput.tagName === 'CANVAS' ? canvasOutput : document.createElement('canvas')
+    let ctxOutPut = canvasOutput.getContext('2d')
 
     let originalImage = await loadImage(srcOriginalImage)
     let width = originalImage.width
@@ -28,8 +28,8 @@ function lut ({ srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', 
     canvasLut.height = lutImage.height
     ctxLut.drawImage(lutImage, 0, 0)
 
-    outputCanvas.width = width
-    outputCanvas.height = height
+    canvasOutput.width = width
+    canvasOutput.height = height
 
     let imageDataOriginal = ctxOriginal.getImageData(0, 0, width, height)
     let filterData = ctxLut.getImageData(0, 0, lutImage.width, lutImage.height)
@@ -101,7 +101,7 @@ function lut ({ srcOriginalImage, srcLutImage, outputCanvas, mimeType = 'jpeg', 
 
     ctxOutPut.putImageData(imageDataOriginal, 0, 0)
 
-    outputCanvas.toBlob(blob => {
+    canvasOutput.toBlob(blob => {
       let url = window.URL.createObjectURL(blob)
       resolve({ blob, url })
     }, 'image/' + mimeType, quality)
