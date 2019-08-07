@@ -22,6 +22,7 @@
     "lib",
     "dist",
     "package.json",
+    "package-lock.json",
     "index.js",
     "LICENSE",
     "README.md"
@@ -37,6 +38,7 @@
   ],
   "author": "Jaxon",
   "license": "MIT",
+  "private": false,
   "devDependencies": {
     "@babel/plugin-transform-async-to-generator": "^7.5.0",
     "babel-cli": "^6.26.0",
