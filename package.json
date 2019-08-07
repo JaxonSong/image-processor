@@ -18,6 +18,14 @@
     "type": "git",
     "url": "https://github.com/JaxonSong/image-processor.git"
   },
+  "files": [
+    "lib",
+    "dist",
+    "package.json",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "keywords": [
     "image",
     "picture",
