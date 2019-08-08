@@ -36,7 +36,7 @@ function isLocalImage (src) {
     if (src.includes('localhost') || src.includes('192.168.1.10')) {
       return true
     } else {
-      let getHostReg = /^http(s)?:\/\/(.*?)\//
+      let getHostReg = /http(s)?:\/\/(.*?)\//
       let href = window.location.href
       if (href.match(getHostReg)[0] === src.match(getHostReg)[0]) {
         return true
