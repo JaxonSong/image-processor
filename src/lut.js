@@ -99,6 +99,7 @@ function lut ({ srcOriginalImage, srcLutImage, canvasOutput, mimeType = 'jpeg', 
       imageDataOriginal.data[i + 3] = a
     }
 
+    ctxOutPut.clearRect(0, 0, width, height)
     ctxOutPut.putImageData(imageDataOriginal, 0, 0)
 
     canvasOutput.toBlob(blob => {
