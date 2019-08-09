@@ -14,7 +14,7 @@ module.exports.loadImage = function (src, width, height) {
         image.width = width
       }
       if (height) {
-        image.width = height
+        image.height = height
       }
       resolve(image)
     } else {
@@ -23,7 +23,7 @@ module.exports.loadImage = function (src, width, height) {
           image.width = width
         }
         if (height) {
-          image.width = height
+          image.height = height
         }
         resolve(image)
       }
