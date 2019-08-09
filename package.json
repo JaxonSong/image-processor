@@ -1,6 +1,6 @@
 {
   "name": "@jaxon_song/image-processor",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A powerful JavaScript image processing tool",
   "main": "index.js",
   "directories": {
