@@ -49,63 +49,81 @@ function isLocalImage (src) {
   }
 }
 
-module.exports.rgb2Hsb = function ([r, g, b]) {
+module.exports.rgb2Hsb = function (r, g, b) {
   r /= 255
+  g /= 255
   b /= 255
-  r /= 255
-  let max = Math.max(r, g, b)
+  let h, s, v
   let min = Math.min(r, g, b)
-  let hsbH = 0
-  let hsbS = 0
-  let hsbB = 0
-  // 计算色相Hue
-  switch (max) {
-    case min:
-      hsbH = 0
-      break
-    case g:
-      hsbH = 60 * (b - r) / (max - min) + 120
-      break
-    case b:
-      hsbH = 60 * (r - g) / (max - min) + 240
-      break
-    case r:
-      hsbH = g >= b ? 60 * (g - b) / (max - min) + 0 : 60 * (g - b) / (max - min) + 360
-      break
+  let max = v = Math.max(r, g, b)
+  let difference = max - min
+
+  if (max === min) {
+    h = 0
+  } else {
+    switch (max) {
+      case r:
+        h = (g - b) / difference + (g < b ? 6 : 0)
+        break
+      case g:
+        h = 2.0 + (b - r) / difference
+        break
+      case b:
+        h = 4.0 + (r - g) / difference
+        break
+    }
+    h = Math.round(h * 60)
   }
-  // 计算饱和度Saturation
-  hsbS = max === 0 ? 0 : (max - min) / max
-  // 计算明度Brightness
-  hsbB = max
-  return [hsbH, hsbS, hsbB].map(item => Math.round(item))
+  if (max === 0) {
+    s = 0
+  } else {
+    s = 1 - min / max
+  }
+  s = Math.round(s * 100 * 100) / 100
+  v = Math.round(v * 100 * 100) / 100
+  return [h, s, v]
 }
 
-module.exports.hsb2Rgb = function ([hsbH, hsbS, hsbB]) {
-  let rgbArr = []
-  let i = Math.abs(hsbH / 60) % 6
-  let f = hsbH / 60 - i
-  let p = hsbB * (1 - hsbS)
-  let q = hsbB * (1 - f * hsbS)
-  let t = hsbB * (1 - (1 - f) * hsbS)
-  switch (i) {
+module.exports.hsb2Rgb = function (h, s, v) {
+  s /= 100
+  v /= 100
+  let h1 = Math.floor(h / 60) % 6
+  let f = h / 60 - h1
+  let p = v * (1 - s)
+  let q = v * (1 - f * s)
+  let t = v * (1 - (1 - f) * s)
+  let r, g, b
+  switch (h1) {
     case 0:
-      rgbArr = [hsbB, t, p]
+      r = v
+      g = t
+      b = p
       break
     case 1:
-      rgbArr = [q, hsbB, p]
+      r = q
+      g = v
+      b = p
       break
     case 2:
-      rgbArr = [p, hsbB, t]
+      r = p
+      g = v
+      b = t
       break
     case 3:
-      rgbArr = [p, q, hsbB]
+      r = p
+      g = q
+      b = v
       break
     case 4:
-      rgbArr = [t, p, hsbB]
+      r = t
+      g = p
+      b = v
       break
     case 5:
-      rgbArr = [hsbB, p, q]
+      r = v
+      g = p
+      b = q
       break
   }
-  return rgbArr.map(item => Math.round(item))
+  return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)]
 }

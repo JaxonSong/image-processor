@@ -102,40 +102,40 @@ module.exports = {
    * 色相
    */
   hue: (originRGBArr, textureRGBArr) => {
-    let hsbOriginal = rgb2Hsb(originRGBArr)
-    let hsbTexture = rgb2Hsb(textureRGBArr)
+    let hsbOriginal = rgb2Hsb(...originRGBArr)
+    let hsbTexture = rgb2Hsb(...textureRGBArr)
     let hsbBlending = ([hsbTexture[0], hsbOriginal[1], hsbOriginal[2]])
-    let rgbBlending = hsb2Rgb(hsbBlending)
+    let rgbBlending = hsb2Rgb(...hsbBlending)
     return rgbBlending
   },
   /**
    * 饱和度
    */
   saturation: (originRGBArr, textureRGBArr) => {
-    let hsbOriginal = rgb2Hsb(originRGBArr)
-    let hsbTexture = rgb2Hsb(textureRGBArr)
+    let hsbOriginal = rgb2Hsb(...originRGBArr)
+    let hsbTexture = rgb2Hsb(...textureRGBArr)
     let hsbBlending = ([hsbOriginal[0], hsbTexture[1], hsbOriginal[2]])
-    let rgbBlending = hsb2Rgb(hsbBlending)
+    let rgbBlending = hsb2Rgb(...hsbBlending)
     return rgbBlending
   },
   /**
    * 颜色
    */
   color: (originRGBArr, textureRGBArr) => {
-    let hsbOriginal = rgb2Hsb(originRGBArr)
-    let hsbTexture = rgb2Hsb(textureRGBArr)
+    let hsbOriginal = rgb2Hsb(...originRGBArr)
+    let hsbTexture = rgb2Hsb(...textureRGBArr)
     let hsbBlending = ([hsbTexture[0], hsbTexture[1], hsbOriginal[2]])
-    let rgbBlending = hsb2Rgb(hsbBlending)
+    let rgbBlending = hsb2Rgb(...hsbBlending)
     return rgbBlending
   },
   /**
    * 明度
    */
   luminosity: (originRGBArr, textureRGBArr) => {
-    let hsbOriginal = rgb2Hsb(originRGBArr)
-    let hsbTexture = rgb2Hsb(textureRGBArr)
+    let hsbOriginal = rgb2Hsb(...originRGBArr)
+    let hsbTexture = rgb2Hsb(...textureRGBArr)
     let hsbBlending = ([hsbOriginal[0], hsbOriginal[1], hsbTexture[2]])
-    let rgbBlending = hsb2Rgb(hsbBlending)
+    let rgbBlending = hsb2Rgb(...hsbBlending)
     return rgbBlending
   },
   /**
