@@ -50,19 +50,19 @@
 ```javascript
   const { blending, lut } = require('@jaxon_song/image-processor')
 
-  // If the canvas dom node is passed, the processed image will be directly output to the canvas.
+  // If the canvas element is passed, the processed image will be directly output to the canvas.
 
   blending({
     srcOriginalImage: [url],
     srcTextureImage: [url],
     blendingMode: 'difference'，
-    canvasOutput: [cnavas dom]
+    canvasOutput: [cnavas element]
   })
 
   lut({
     srcOriginalImage: [url],
     srcLutImage: [url],
-    canvasOutput: [cnavas dom]
+    canvasOutput: [cnavas element]
   })
 ```
 ## API
@@ -72,17 +72,17 @@
 
   blending({
     // Original image url ( Underlying image )
-    srcOriginalImage,
+    srcOriginalImage: [string],
     // Mixed image url ( Upper picture )
-    srcTextureImage,
-    // The dom node of the canvas to be output
-    canvasOutput,
+    srcTextureImage: [string],
+    // The canvas element to be output
+    canvasOutput: [canvas element],
     // blending mode ( Same as PhotoShop's blend mode ). The default mode is multiply.
-    blendingMode = 'multiply',
-    // A DOMString indicating the image format. The default type is image/png.
-    mimeType = 'jpeg',
+    blendingMode: [string],
+    // A DOMString indicating the image format. The default type is image/jpeg.
+    mimeType: [string],
     // A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp. If this argument is anything else, the default values 0.92 and 0.80 are used for image/jpeg and image/webp respectively. Other arguments are ignored.
-    quality = 1
+    quality: [number]
   })
 ```
 ### lut
@@ -91,15 +91,15 @@
 
   lut({
     // Original image url ( Underlying image )
-    srcOriginalImage,
+    srcOriginalImage: [string],
     // lut image url ( Upper picture )
-    srcLutImage,
-    // The dom node of the canvas to be output
-    canvasOutput,
-    // A DOMString indicating the image format. The default type is image/png.
-    mimeType = 'jpeg',
+    srcLutImage: [string],
+    // The canvas element to be output
+    canvasOutput: [canvas element],
+    // A DOMString indicating the image format. The default type is image/jpeg.
+    mimeType: [string],
     // A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp. If this argument is anything else, the default values 0.92 and 0.80 are used for image/jpeg and image/webp respectively. Other arguments are ignored.
-    quality = 1
+    quality: [number]
   })
 ```
 ## Blending Mode
