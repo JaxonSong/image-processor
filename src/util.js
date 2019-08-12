@@ -127,3 +127,5 @@ module.exports.hsb2Rgb = function (h, s, v) {
   }
   return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)]
 }
+
+module.exports.isNODE = typeof window === 'undefined'

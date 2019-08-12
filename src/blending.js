@@ -1,19 +1,26 @@
 const blendingFunc = require('./blendingFunc.js')
-var loadImage = require('./util.js').loadImage
+const isNODE = require('./util.js').isNODE
+let createCanvas, loadImage
+if (isNODE) {
+  createCanvas = require('canvas').createCanvas
+  loadImage = require('canvas').loadImage
+} else {
+  loadImage = require('./util.js').loadImage
+}
 
-function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1 }) {
+function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1, outputImageName = './processed' }) {
   return new Promise(async (resolve, reject) => {
-    const correctmimeTypeList = ['jpeg', 'png', 'webp']
+    const correctmimeTypeList = isNODE ? ['jpeg', 'png'] : ['jpeg', 'png', 'webp']
     if (!correctmimeTypeList.includes(mimeType)) {
       reject(new Error('mimeType wrong ! '))
       return
     }
 
-    let canvasOriginal = document.createElement('canvas')
+    let canvasOriginal = isNODE ? createCanvas() : document.createElement('canvas')
     let ctxOriginal = canvasOriginal.getContext('2d')
-    let canvasBlend = document.createElement('canvas')
+    let canvasBlend = isNODE ? createCanvas() : document.createElement('canvas')
     let ctxBlend = canvasBlend.getContext('2d')
-    canvasOutput = canvasOutput instanceof HTMLElement && canvasOutput.tagName === 'CANVAS' ? canvasOutput : document.createElement('canvas')
+    canvasOutput = isNODE ? createCanvas() : canvasOutput instanceof HTMLElement && canvasOutput.tagName === 'CANVAS' ? canvasOutput : document.createElement('canvas')
     let ctxOutPut = canvasOutput.getContext('2d')
 
     let originalImage = await loadImage(srcOriginalImage)
@@ -58,10 +65,22 @@ function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMo
     ctxOutPut.clearRect(0, 0, width, height)
     ctxOutPut.putImageData(imageDataOriginal, 0, 0)
 
-    canvasOutput.toBlob(blob => {
-      let url = window.URL.createObjectURL(blob)
-      resolve({ blob, url })
-    }, 'image/' + mimeType, quality)
+    if (isNODE) {
+      let config = {}
+      mimeType === 'jpeg' ? config.quality = quality : config.compressionLevel = quality
+      canvasOutput.toBuffer((err, buffer) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve({ buffer, mimeType, outputImageName: outputImageName + '.' + mimeType })
+        }
+      }, 'image/' + mimeType, config)
+    } else {
+      canvasOutput.toBlob(blob => {
+        let url = window.URL.createObjectURL(blob)
+        resolve({ blob, url })
+      }, 'image/' + mimeType, quality)
+    }
   })
 }
 
