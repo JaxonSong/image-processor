@@ -11,8 +11,9 @@
     "clean": "rm -rf ./lib/* && rm -rf ./dist/* && rm -rf ./temp/*",
     "babel": "babel src -d temp",
     "uglify": "uglifyjs ./temp/blending.js -o ./lib/blending.js -c -m && uglifyjs ./temp/blendingFunc.js -o ./lib/blendingFunc.js -c -m && uglifyjs ./temp/lut.js -o ./lib/lut.js -c -m && uglifyjs ./temp/util.js -o ./lib/util.js -c -m",
-    "browserify": "browserify ./index.js -o ./dist/bundle.js && uglifyjs ./dist/bundle.js -o ./dist/bundle.min.js -c -m",
-    "build": "npm run clean && npm run babel && npm run uglify && npm run browserify"
+    "browserify": "browserify ./index.js -o ./dist/bundle.js",
+    "build": "npm run clean && npm run babel && npm run uglify && npm run browserify",
+    "uglify-dist": "uglifyjs ./dist/bundle.js -o ./dist/bundle.min.js -c -m"
   },
   "repository": {
     "type": "git",
