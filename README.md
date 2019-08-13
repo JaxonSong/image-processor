@@ -73,15 +73,15 @@
    * resolved a Buffer in Node.js
   */
   lut({
-    srcOriginalImage: [url],
-    srcLutImage: [url],
+    srcOriginalImage: [url],    // Can be the path or link to the image file
+    srcLutImage: [url], // Can be the path or link to the image file
   }).then(buffer => {
     console.log(buffer)   
   })
 
   blending({
-    srcOriginalImage: [url],
-    srcTextureImage: [url],
+    srcOriginalImage: [url], // Can be the path or link to the image file
+    srcTextureImage: [url], // Can be the path or link to the image file
   }).then(buffer => {
     console.log(buffer)
   })
