@@ -68,20 +68,20 @@
 ```
 ### Used in Node.js
 ```javascript
-  const { lut, blending } = require('./index.js')
+  const { lut, blending } = require('@jaxon_song/image-processor')
   /**
    * resolved a Buffer in Node.js
   */
   lut({
-    srcOriginalImage: originalImage,
-    srcLutImage: lutImage
+    srcOriginalImage: [url],
+    srcLutImage: [url],
   }).then(buffer => {
     console.log(buffer)   
   })
 
   blending({
-    srcOriginalImage: originalImage,
-    srcTextureImage: textureImage
+    srcOriginalImage: [url],
+    srcTextureImage: [url],
   }).then(buffer => {
     console.log(buffer)
   })
