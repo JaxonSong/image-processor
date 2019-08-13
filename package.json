@@ -36,7 +36,8 @@
     "filter",
     "lut",
     "blend",
-    "canvas"
+    "canvas",
+    "node"
   ],
   "author": "Jaxon",
   "license": "MIT",

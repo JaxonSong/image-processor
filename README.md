@@ -7,6 +7,7 @@
 - Support for 27 image blend modes in PhotoShop
 - Support LUT filter overlay
 - Support for outputting blob and url of processed images
+- Support Node.js(^1.1.0)
 
 ## Installing
 ### Using npm:
@@ -64,6 +65,27 @@
     srcLutImage: [url],
     canvasOutput: [cnavas element]
   })
+```
+### Used in Node.js
+```javascript
+  const { lut, blending } = require('./index.js')
+  /**
+   * resolved a Buffer in Node.js
+  */
+  lut({
+    srcOriginalImage: originalImage,
+    srcLutImage: lutImage
+  }).then(buffer => {
+    console.log(buffer)   
+  })
+
+  blending({
+    srcOriginalImage: originalImage,
+    srcTextureImage: textureImage
+  }).then(buffer => {
+    console.log(buffer)
+  })
+
 ```
 ## API
 ### blending
