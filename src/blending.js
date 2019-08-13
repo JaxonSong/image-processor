@@ -8,7 +8,7 @@ if (isNODE) {
   loadImage = require('./util.js').loadImage
 }
 
-function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1, outputImageName = './processed' }) {
+function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMode = 'multiply', mimeType = 'jpeg', quality = 1 }) {
   return new Promise(async (resolve, reject) => {
     const correctmimeTypeList = isNODE ? ['jpeg', 'png'] : ['jpeg', 'png', 'webp']
     if (!correctmimeTypeList.includes(mimeType)) {
@@ -72,7 +72,7 @@ function blending ({ srcOriginalImage, srcTextureImage, canvasOutput, blendingMo
         if (err) {
           reject(err)
         } else {
-          resolve({ buffer, mimeType, outputImageName: outputImageName + '.' + mimeType })
+          resolve(buffer)
         }
       }, 'image/' + mimeType, config)
     } else {

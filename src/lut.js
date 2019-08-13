@@ -7,7 +7,7 @@ if (isNODE) {
   loadImage = require('./util.js').loadImage
 }
 
-function lut ({ srcOriginalImage, srcLutImage, canvasOutput, mimeType = 'jpeg', quality = 1, outputImageName = './processed' }) {
+function lut ({ srcOriginalImage, srcLutImage, canvasOutput, mimeType = 'jpeg', quality = 1 }) {
   return new Promise(async (resolve, reject) => {
     const correctmimeTypeList = isNODE ? ['jpeg', 'png'] : ['jpeg', 'png', 'webp']
     if (!correctmimeTypeList.includes(mimeType)) {
@@ -116,7 +116,7 @@ function lut ({ srcOriginalImage, srcLutImage, canvasOutput, mimeType = 'jpeg', 
         if (err) {
           reject(err)
         } else {
-          resolve({ buffer, mimeType, outputImageName: outputImageName + '.' + mimeType })
+          resolve(buffer)
         }
       }, 'image/' + mimeType, config)
     } else {
