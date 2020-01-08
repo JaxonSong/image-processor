@@ -206,7 +206,7 @@ module.exports = {
     return textureRGBArr.map((item, index) => {
       if (originRGBArr[index] < 2 * item - 255) {
         return 2 * item - 255
-      } else if (2 * item - 255 < originRGBArr[index] < 2 * item) {
+      } else if (2 * item - 255 <= originRGBArr[index] && originRGBArr[index] <= 2 * item) {
         return originRGBArr[index]
       } else if (originRGBArr[index] > 2 * item) {
         return 2 * item
